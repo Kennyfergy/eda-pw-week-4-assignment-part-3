@@ -12,11 +12,21 @@ const maxItems = 5;
 */
 //created function to add item to global array 'basket' and return true if added
 
+/*Update the required `addItem` function to:
+  - Use the `isFull` function to prevent more than `maxItems` from being added to the basket. 
+  - If an item was added to the array, return `true`
+  - If there was no room and the item could not be added return `false` */
+
 function addItem(item) {
-  console.log("Item added:", item);
-  basket.push(item);
-  return true;
-}
+  if (isFull() === false) { //checks if basket full
+    basket.push(item);
+    return true;
+    console.log('item added:', item);
+  }
+  return false;
+} // end addItem
+
+
 console.log(`Basket is ${basket}`);
 console.log("Adding apples (expect true)", addItem("apples"));
 console.log(`Basket is now ${basket}`);
@@ -30,14 +40,14 @@ function listItems(basket) {
   for (let item of basket) {
     console.log(item);
   }
-}
+} // end listItems
 /*- Create a function called `empty`. It should:
   - reset the `basket` to an empty array */
-
+//function to empty basket
 function empty(basket) {
   basket.length = 0;
   return true;
-}
+} //end empty check
 console.log("Emptying basket");
 console.log("Checking if basket empty:", empty(basket));
 
@@ -45,7 +55,7 @@ console.log("Checking if basket empty:", empty(basket));
   - return `false` if the basket contains *less* than max number of items
   - return `true` otherwise (equal or more than maxItems)
  */
-/*function isFull(basket, maxItems) {
+/*  failed code: function isFull(basket, maxItems) {
   if (basket.length <= maxItems) {
     return false;
   } else {
@@ -53,12 +63,12 @@ console.log("Checking if basket empty:", empty(basket));
   }
 }*/
 function isFull() {
-  if (basket < maxItems) {
+  if (basket.length < maxItems) {
     return false;
   } else {
     return true;
   }
-}
+} //end isFull
 
 if (isFull(basket, maxItems)) {
   console.log("The basket is full.");

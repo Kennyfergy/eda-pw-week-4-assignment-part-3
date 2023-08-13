@@ -18,18 +18,18 @@ const maxItems = 5;
   - If there was no room and the item could not be added return `false` */
 
 function addItem(item) {
-  if (isFull() === false) { //checks if basket full
+  if (isFull() === false) {
+    //checks if basket full
     basket.push(item);
     return true;
-    console.log('item added:', item);
+    console.log("item added:", item);
   }
   return false;
 } // end addItem
 
-
 console.log(`Basket is ${basket}`);
 console.log("Adding apples (expect true)", addItem("apples"));
-console.log(`Basket is now ${basket}`);
+console.log(`Basket now contains ${basket}`);
 /* - Create a function called `listItems`. It should:
   - loop over the items in the `basket` array
   - console.log each individual item on a new line
@@ -41,6 +41,7 @@ function listItems(basket) {
     console.log(item);
   }
 } // end listItems
+
 /*- Create a function called `empty`. It should:
   - reset the `basket` to an empty array */
 //function to empty basket
@@ -61,7 +62,7 @@ console.log("Checking if basket empty:", empty(basket));
   } else {
     return true;
   }
-}*/
+}*/ // rewrote again and it works
 function isFull() {
   if (basket.length < maxItems) {
     return false;
@@ -69,11 +70,35 @@ function isFull() {
     return true;
   }
 } //end isFull
-
+//logging the isFull function
 if (isFull(basket, maxItems)) {
   console.log("The basket is full.");
 } else {
   console.log("The basket is not full.");
+}
+
+function removeItem(item) {
+  const index = basket.indexOf(item);
+
+  if (index !== -1) {
+    const removedItem = basket.splice(index, 1)[0];
+    return removedItem;
+  } else {
+    return null;
+  }
+} //end remove item
+
+//code to test removeItem
+console.log("Basket before removal:", basket);
+
+const itemToRemove = "apple";
+const removedItem = removeItem(itemToRemove);
+
+if (removedItem !== null) {
+  console.log(`Removed item: ${removedItem}`);
+  console.log("Basket after removal:", basket);
+} else {
+  console.log(`Item "${itemToRemove}" not found in the basket. Basket remains unchanged.`);
 }
 
 // DO NOT MODIFY
